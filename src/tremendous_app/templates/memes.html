@@ -13,7 +13,7 @@
             <input type="submit", value="Plz Gib Meme...">
         </form>
         {% if meme_path %}
-        <h2>Hello {{ first_name }} {{ last_name }} <br> I hear you like to {{ hobby_desc }}! <br> Anyways...here is a tremendous meme!</h2>
+        <h2>Hello {{ first_name }} {{ last_name }} <br> I hear you like {{ hobby_desc }}! <br> Anyways...here is a tremendous meme!</h2>
         <div class="meme-frame"><img src="{{ url_for('sendMeme') }}?path={{ meme_path }}" class="meme-img"></div>
         {% endif %}
     </body>
