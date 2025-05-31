@@ -4,6 +4,7 @@ import flask
 import click
 import numpy
 
+__version__ = "0.0.1"
 myApp = flask.Flask(__name__)
 appDir = pathlib.Path(__file__).parent
 
@@ -37,10 +38,10 @@ def memes():
     return flask.render_template("memes.html", meme_path=memePath, first_name=firstName, last_name=lastName, hobby_desc=favHobby)
 
 @click.command("main")
-@click.version_option("0.0.1", prog_name="tremendous-app")
-@click.option("--host", type=click.STRING, default="0.0.0.0")
-@click.option("--port", "-p", type=click.INT, default=os.environ.get("TREMENDOUS_PORT", 8000))
-@click.option("--debug", "-dbg", is_flag=True, default=True)
+@click.version_option(__version__, prog_name="tremendous-app")
+@click.option("--host", type=click.STRING, default="0.0.0.0", show_default=True)
+@click.option("--port", "-p", type=click.INT, default=os.environ.get("TREMENDOUS_PORT", 8000), show_default=True)
+@click.option("--debug", "-dbg", is_flag=True, default=True, show_default=True)
 def main(host : str, port : int, debug : bool):
     myApp.run(host=host, port=port, debug=debug)
 

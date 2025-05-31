@@ -1,2 +1,4 @@
 .dev-venv
-*/memes/*
+*memes*
+*/*.egg-info/*
+*build*
