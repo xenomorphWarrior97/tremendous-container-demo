@@ -39,11 +39,11 @@ def memes():
 
 @click.command("main")
 @click.version_option(__version__, prog_name="tremendous-app")
-@click.option("--host", type=click.STRING, default="0.0.0.0", show_default=True)
-@click.option("--port", "-p", type=click.INT, default=os.environ.get("TREMENDOUS_PORT", 8000), show_default=True)
-@click.option("--debug", "-dbg", is_flag=True, default=True, show_default=True)
-def main(host : str, port : int, debug : bool):
-    myApp.run(host=host, port=port, debug=debug)
+@click.option("--app-host", type=click.STRING, default="0.0.0.0", show_default=True)
+@click.option("--app-port", "-p", type=click.INT, default=os.environ.get("TREMENDOUS_PORT", 8000), show_default=True)
+@click.option("--debug-app", "-dbg", is_flag=True, default=True, show_default=True)
+def main(app_host : str, app_port : int, debug_app : bool):
+    myApp.run(host=app_host, port=app_port, debug=debug_app)
 
 if __name__ == '__main__':
     main()
