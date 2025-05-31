@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>Somebody Say Meme?</head>
+    <body>
+        <h1>Enter your info below to see a meme!</h1>
+        <form method="POST">
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_input" name="first_name" required="true"><br><br>
+            <label for="last_name">Last Name:</label><br>
+            <input type="text", id="last_input" name="last_name" required="true"><br><br>
+            <label for="hobby_desc">Favorite Hobby:</label><br>
+            <input type="text" id="hobby_desc_input", name="hobby_desc" required="true"><br><br>
+            <input type="submit", value="Plz Gib Meme...">
+        </form>
+        {% if meme_path %}
+        <h2>Hello {{ first_name }} {{ last_name }} <br> I hear you like to {{ hobby_desc }}! <br> Anyways...here is a tremendous meme!</h2>
+        <div class="meme-frame"><img src="{{ url_for('sendMeme') }}?path={{ meme_path }}" class="meme-img"></div>
+        {% endif %}
+    </body>
+</html>
