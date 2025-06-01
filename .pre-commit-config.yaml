@@ -14,7 +14,7 @@ repos:
     rev: 23.1.0   # Use the latest stable Black version
     hooks:
       - id: black
-        args: ["--diff", "--line-length=60"]
+        args: ["--line-length=60"]
         language: python
         files: ^src/.*\.py$
 
