@@ -40,14 +40,14 @@ repos:
             # D100    – Missing docstring in public module
             # D104    - Missing docstring in public package
             # CPY001  – Missing copyright notice at the top of the file
-            "--ignore=COM812,FBT001,FBT002,S104,NPY002,EM102,TRY003,D100,D104,CPY001"
+            "--ignore=COM812,FBT001,FBT002,S104,NPY002,EM102,TRY003,D100,D104,CPY001",
+            "--fix"
           ]
         files: ^src/.*\.py$
         language: python
 
-      - id: ruff-format
-        name: ruff formatter
-        args: ["--check"]
+      - id: ruff
+        name: ruff-check
         files: ^src/.*\.py$
         language: python
 

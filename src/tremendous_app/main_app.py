@@ -10,7 +10,9 @@ MYAPP = flask.Flask(__name__)
 APPDIR = pathlib.Path(__file__).parent
 
 
-def select_random_meme(meme_database_dir: pathlib.Path) -> pathlib.Path:
+def select_random_meme(
+    meme_database_dir: pathlib.Path,
+) -> pathlib.Path:
     """Select random meme from specified directory.
 
     :param meme_database_dir: directory containing tremendously awesome memes.
@@ -25,7 +27,10 @@ def select_random_meme(meme_database_dir: pathlib.Path) -> pathlib.Path:
         raise RuntimeError(
             f"Found {num_memes} in {meme_database_dir}! This is a tremendous problem!"
         )
-    return meme_database_dir / memes[np.random.randint(num_memes)]
+    return (
+        meme_database_dir
+        / memes[np.random.randint(num_memes)]
+    )
 
 
 @MYAPP.route("/")
@@ -49,7 +54,9 @@ def send_meme() -> flask.Response:
     if not pathlib.Path.is_file(meme_path):
         return "Sorry, got no meme bro...", 404
 
-    return flask.send_file(str(meme_path), mimetype="image/jpeg")
+    return flask.send_file(
+        str(meme_path), mimetype="image/jpeg"
+    )
 
 
 @MYAPP.route("/memes", methods=["GET", "POST"])
@@ -65,7 +72,11 @@ def memes() -> flask.Response:
         last_name = flask.request.form.get("last_name")
         fav_hobby = flask.request.form.get("hobby_desc")
         meme_path = str(
-            select_random_meme(pathlib.Path(os.environ.get("TREMENDOUS_MEMES_PATH")))
+            select_random_meme(
+                pathlib.Path(
+                    os.environ.get("TREMENDOUS_MEMES_PATH")
+                )
+            )
         )
     return flask.render_template(
         "memes.html",
@@ -77,8 +88,15 @@ def memes() -> flask.Response:
 
 
 @click.command("main")
-@click.version_option(__version__, prog_name="tremendous-app")
-@click.option("--app-host", type=click.STRING, default="0.0.0.0", show_default=True)
+@click.version_option(
+    __version__, prog_name="tremendous-app"
+)
+@click.option(
+    "--app-host",
+    type=click.STRING,
+    default="0.0.0.0",
+    show_default=True,
+)
 @click.option(
     "--app-port",
     "-p",
@@ -86,8 +104,16 @@ def memes() -> flask.Response:
     default=os.environ.get("TREMENDOUS_PORT", 8000),
     show_default=True,
 )
-@click.option("--debug-app", "-dbg", is_flag=True, default=True, show_default=True)
-def main(app_host: str, app_port: int, debug_app: bool) -> None:
+@click.option(
+    "--debug-app",
+    "-dbg",
+    is_flag=True,
+    default=True,
+    show_default=True,
+)
+def main(
+    app_host: str, app_port: int, debug_app: bool
+) -> None:
     """Launch Web server.
 
     :param app_host: host ip for server.
