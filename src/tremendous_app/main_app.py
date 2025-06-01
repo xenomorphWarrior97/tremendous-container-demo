@@ -47,7 +47,7 @@ def send_meme() -> flask.Response:
     """
     meme_path = pathlib.Path(flask.request.args.get("path"))
     if not pathlib.Path.is_file(meme_path):
-        return "Got no meme bro...", 404
+        return "Sorry, got no meme bro...", 404
 
     return flask.send_file(str(meme_path), mimetype="image/jpeg")
 

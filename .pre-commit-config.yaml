@@ -16,6 +16,7 @@ repos:
       - id: black
         args: ["--diff", "--line-length=60"]
         language: python
+        files: ^src/.*\.py$
 
   # Ruff linter & formatter (optional if you dont want to use black)
   - repo: https://github.com/astral-sh/ruff-pre-commit

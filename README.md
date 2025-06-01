@@ -9,4 +9,3 @@ This is a simple demonstration project that shows how to build a small [Flask](h
 - Containerized using Docker
 - Linting and formatting using `pre-commit` hooks (`ruff`, `black`, `isort`, etc.)
 - Cross-platform support (Windows/Linux)
-
