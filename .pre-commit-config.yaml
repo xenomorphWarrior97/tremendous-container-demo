@@ -14,7 +14,7 @@ repos:
     rev: 23.1.0   # Use the latest stable Black version
     hooks:
       - id: black
-        args: ["--diff"]
+        args: ["--diff", "--line-length=60"]
         language: python
 
   # Ruff linter & formatter (optional if you dont want to use black)
