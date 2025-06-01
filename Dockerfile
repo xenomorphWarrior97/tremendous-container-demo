@@ -14,4 +14,3 @@ RUN /app-venv/bin/pip install . --verbose
 RUN /app-venv/bin/tremendous-app --help # just make sure it launches!
 
 ENTRYPOINT ["/app-venv/bin/tremendous-app"]
-

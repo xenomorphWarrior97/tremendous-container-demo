@@ -1,0 +1,86 @@
+repos:
+  # General pre-commit hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+
+  - repo: https://github.com/psf/black # python formatter
+    rev: 23.1.0   # Use the latest stable Black version
+    hooks:
+      - id: black
+        args: ["--diff"]
+        language: python
+
+  # Ruff linter & formatter (optional if you dont want to use black)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.5
+    hooks:
+      - id: ruff
+        name: ruff lint
+        args:
+          [
+            "--preview",
+            "--unsafe-fixes",
+            "--select=ALL",
+            # Ignore the following rules:
+            # COM812  – Missing trailing comma (allow trailing commas)
+            # FBT001  – Boolean default positional argument in function definition
+            # FBT002  – Boolean default positional argument value is True
+            # S104    – Avoid warning about flask connections being too "open"
+            # NPY002  – Use of `np.random.randint` (discouraged in some contexts)
+            # EM102   – Exception must not use a string literal, use an exception instead
+            # TRY003  – Avoid specifying messages in bare `raise` (e.g. `raise ValueError("msg")`)
+            # D100    – Missing docstring in public module
+            # D104    - Missing docstring in public package
+            # CPY001  – Missing copyright notice at the top of the file
+            "--ignore=COM812,FBT001,FBT002,S104,NPY002,EM102,TRY003,D100,D104,CPY001"
+          ]
+        files: ^src/.*\.py$
+        language: python
+
+      - id: ruff-format
+        name: ruff formatter
+        args: ["--check"]
+        files: ^src/.*\.py$
+        language: python
+
+  # Reorder python imports
+  - repo: https://github.com/asottile/reorder-python-imports
+    rev: v3.15.0
+    hooks:
+    -   id: reorder-python-imports
+        args: ["--py39-plus"]
+        files: ^src/.*\.py$
+        language: python
+
+  # Syntax upgrades (e.g., f-strings, modern unpacking)
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        args: ["--py39-plus"]
+        files: ^src/.*\.py$
+        language: python
+
+#  # Local system tools: hadolint + htmlhint
+#  - repo: local
+#    hooks:
+#      - id: hadolint
+#        name: Dockerfile linter
+#        entry: hadolint
+#        language: system
+#        types: [file]
+#        files: ^Dockerfile$
+#
+#      - id: htmlhint
+#        name: HTML linter
+#        entry: htmlhint
+#        language: system
+#        types: [file]
+#        files: \.html$
