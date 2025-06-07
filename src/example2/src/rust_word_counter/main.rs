@@ -16,6 +16,7 @@ fn main() {
 
     for word in content.split_whitespace() {
         let word = word.to_lowercase();
+
         *frequencies.entry(word).or_insert(0) += 1;
     }
 

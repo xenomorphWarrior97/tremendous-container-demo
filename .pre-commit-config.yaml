@@ -81,6 +81,7 @@ repos:
               "--",
               "--check"]
         language: system
+        files: '^src/example2/src/rust_word_counter/.*\.rs$'
         pass_filenames: false
 
       - id: cargo-clippy
@@ -93,6 +94,7 @@ repos:
                "-D",
                "warnings"]
         language: system
+        files: '^src/example2/src/rust_word_counter/.*\.rs$'
         pass_filenames: false
 
       - id: cargo-check
@@ -102,6 +104,7 @@ repos:
               "--all",
               "--manifest-path=src/example2/src/rust_word_counter/Cargo.toml"]
         language: system
+        files: '^src/example2/src/rust_word_counter/.*\.rs$'
         pass_filenames: false
 
 
@@ -110,12 +113,13 @@ repos:
     hooks:
       - id: clang-format
         args: ["--style=file"]
-        files: \.(cpp|cc|cxx|c\+\+|hpp|hh|hxx)$
+        files: '^src/example3/src/cpp_word_counter/.*\.(cpp|cc|cxx|c\+\+|hpp|hh|hxx)$'
+
 
       - id: cpplint
         # Options: disable some checks, adjust verbose level
         args: ["--verbose=0", "--filter=-whitespace/braces"]
-        files: \.(cpp|cc|cxx|c\+\+|h|hpp|hh|hxx)$
+        files: '^src/example3/src/cpp_word_counter/.*\.(cpp|cc|cxx|c\+\+|hpp|hh|hxx)$'
 
   #- repo: local
   #  hooks:
