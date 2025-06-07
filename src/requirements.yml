@@ -1,0 +1,20 @@
+name: dev-env
+
+channels:
+  - conda-forge
+
+dependencies:
+  - click
+  - clang
+  - clang-tools
+  - cpplint
+  - cppcheck
+  - compilers
+  - flask
+  - git
+  - ninja
+  - numpy=2
+  - pre-commit
+  - identify
+  - pip
+  - python=3.13
