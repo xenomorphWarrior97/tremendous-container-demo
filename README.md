@@ -29,4 +29,4 @@ This repository contains a simple demonstration project that showcases how to bu
 ## Local Development
 
 - Use the requirements.yml file to create a conda environment that contains all the dependencies required to do local development on this repo for the Python and C++ apps.
-- To do devevelopment for the rust application, it is reccomended you install rust/cargo on your host system. Install instructions are available from the official (Rust website)[https://www.rust-lang.org/tools/install]:
+- To do devevelopment for the rust application, it is reccomended you install rust/cargo on your host system. Install instructions are available from the official [Rust website](https://www.rust-lang.org/tools/install):
