@@ -22,8 +22,12 @@ dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["tremendous_app"]
 include-package-data=true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["tremendous_app*"]
+
 
 [tool.setuptools.package-data]
 tremendous_app = ["static/**/*", "templates/**/*"]

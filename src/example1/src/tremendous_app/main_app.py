@@ -3,34 +3,17 @@ import pathlib
 
 import click
 import flask
-import numpy as np
+import matplotlib as mpl
+from tremendous_app.utils import (
+    select_random_meme,
+)
+# , get_mandle_bounds, generate_mandelbrot
+
+mpl.use("Agg")
 
 __version__ = "0.0.1"
 MYAPP = flask.Flask(__name__)
 APPDIR = pathlib.Path(__file__).parent
-
-
-def select_random_meme(
-    meme_database_dir: pathlib.Path,
-) -> pathlib.Path:
-    """Select random meme from specified directory.
-
-    :param meme_database_dir: directory containing tremendously awesome memes.
-    :type meme_database_dir: pathlib.Path
-    :raises RuntimeError: raises error if no memes are found in meme_database_dir.
-    :return: path to one selected meme.
-    :rtype: pathlib.Path
-    """
-    memes = os.listdir(meme_database_dir)
-    num_memes = len(memes)
-    if num_memes == 0:
-        raise RuntimeError(
-            f"Found {num_memes} in {meme_database_dir}! This is a tremendous problem!"
-        )
-    return (
-        meme_database_dir
-        / memes[np.random.randint(num_memes)]
-    )
 
 
 @MYAPP.route("/")
@@ -41,6 +24,21 @@ def welcome_page() -> flask.Response:
     :rtype: flask.Response
     """
     return flask.render_template("index.html")
+
+
+# @MYAPP.route("/mandelbrot.png")
+# def showMandelBrot():
+#    xMin,xMax,yMin,yMax = get_mandle_bounds()
+#    mandelbrot_set = generate_mandelbrot(xMin, xMax, yMin, yMax, 600, 600 ,100)
+#    fig, ax = plt.subplots()
+#    ax.imshow(mandelbrot_set, cmap='hot', extent=[xMin,xMax, yMin, yMax])
+#    ax.axis('off')
+#
+#    buf = io.BytesIO()
+#    fig.savefig(buf, format='png', bbox_inches='tight', pad_inches=0)
+#    buf.seek(0)
+#    plt.close(fig)
+#    return flask.send_file(buf, mimetype='image/png')
 
 
 @MYAPP.route("/get-meme")
